@@ -1,0 +1,21 @@
+{
+    "name": "Groot Messenger",
+    "short_name": "Groot",
+    "icons": [
+      {
+        "src": "img/appIcon",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/png"
+      },
+      {
+          "src": "img/appPushIcon",
+          "sizes": "144x144",
+          "type": "image/png"
+      }
+    ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "gcm_sender_id": "103953800507"
+  }
+  

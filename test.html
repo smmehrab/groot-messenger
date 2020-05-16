@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="public/css/sideNav.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/scrollBar.css">
+
+    <title>GROOT</title>
+</head>
+
+<body>
+    <div id="messenger">
+        <div id="signed-out" class="row hide">
+            <nav style="background: #00AFF0;">
+                <div class="nav-wrapper container">
+                    <img class="brand-logo" src="public/img/logo.png" alt="GROOT"
+                        style="height: 50%; width: auto; top:50%; left: 50%; transform:translate(-50%, -50%);">
+                </div>
+            </nav>
+
+            <!-- Sign In -->
+            <div id="signInTab" class="tabcontent">
+                <div class="modal-content">
+                    <form id="signin-form">
+                        <div class="input-field">
+                            <i class="material-icons prefix"
+                                style="font-size: 1.5rem; top: 50%; transform: translateY(-50%);">email</i>
+                            <input type="email" id="signin-email" required />
+                            <label for="signin-email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix"
+                                style="font-size: 1.5rem; top: 50%; transform: translateY(-50%);">vpn_key</i>
+                            <input type="password" id="signin-password" required />
+                            <label for="signin-password">Password</label>
+                        </div>
+                        <button id="signInBtn" class="btn hoverable">
+                            <span id="signInText">Sign In</span>
+                            <i id="btnIcon" class="material-icons hide">autorenew</i>
+                        </button>
+                        <div style="margin-top: 1rem;" class="center-align">New Here? <a class="switch"
+                                onclick="openTab('signUpTab')">Sign Up Instead</a></div>
+                        <p style="margin-top: 1rem;" class="error red-text center-align"></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sign Up -->
+            <div id="signUpTab" class="tabcontent">
+                <div class="modal-content">
+                    <form id="signup-form">
+                        <div class="input-field">
+                            <i class="material-icons prefix"
+                                style="font-size: 1.5rem; top: 50%; transform: translateY(-50%);">email</i>
+                            <input type="email" id="signup-email" required />
+                            <label for="signup-email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix"
+                                style="font-size: 1.5rem; top: 50%; transform: translateY(-50%);">vpn_key</i>
+                            <input type="password" id="signup-password" required />
+                            <label for="signup-password">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix"
+                                style="font-size: 1.5rem; top: 50%; transform: translateY(-50%);">vpn_key</i>
+                            <input type="password" id="signup-confirmPassword" required />
+                            <label for="signup-confirmPassword">Confirm Password</label>
+                        </div>
+                        <button id="signUpBtn" class="btn hoverable">Sign up</button>
+                        <div style="margin-top: 1rem;" class="center-align">Signed Up Already? <a class="switch"
+                                onclick="openTab('signInTab')">Sign In Instead</a></div>
+                        <p class="error red-text center-align"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="signed-in" class="row">
+            <div id="menu" class="col">
+                <div class="center profile">
+                    <div id="profileInfo">
+                        <img id="profilePicture" src="img/groot_g.png" alt="" class="circle responsive-img">
+                        <p id="profileName">I'm Groot</p>
+                        <p id="profileStatus">Active</p>
+                    </div>
+                </div>
+
+                <div class="options">
+                    <ul>
+                        <li class="item chats active">
+                            <a id="chatsBtn" href=""><span class="material-icons left"
+                                    style="margin-right: 1rem;">chat</span>Chats</a>
+                        </li>
+
+                        <li class="item groups">
+                            <a id="groupsBtn" href=""><span class="material-icons left"
+                                    style="margin-right: 1rem;">group_add</span>Groups</a>
+                        </li>
+
+                        <li class="item friends">
+                            <a id="friendsBtn" href=""><span class="material-icons left"
+                                    style="margin-right: 1rem;">how_to_reg</span>Friends</a>
+                        </li>
+
+                        <li class="item people">
+                            <a id="peopleBtn" href=""><span class="material-icons left"
+                                    style="margin-right: 1rem;">person_add</span>People</a>
+                        </li>
+
+                        <li class="item signOut">
+                            <a id="signOutBtn" href="">
+                                <i id="signOutBtnIcon" class="material-icons left" style="margin-right: 1rem; transform: rotate(180deg);">exit_to_app</i>
+                                <span id="signOutBtnText">Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div id="chatWindow" class="col">
+
+                <!-- To Display Chats -->
+                <div id="chats" class="hide">
+                    <div class="row titleBar">
+                        <div id="navDiv" class="col">
+                            <a id="menuBtn" href="#menu" class="hamburger"><i id="" class="material-icons">menu</i></a>
+                            <p id="navTitle">
+                                <a href="" id="navBtn" class="white-text disable">
+                                    <span class="navText">Chats</span>
+                                    <!-- {{!-- <img id="navImg" src="assets/img/dp.png" alt="pp" class="circle responsive-img right">                         --}} -->
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row main">
+                        <ul id="chatsDiv" class="col">
+                            <li id="chatItem" class="row"><img id="picture" src="img/groot_g.png" class="col">
+                                <div id="details" class="col">
+                                    <div id="detailsInside">
+                                        <p id="chatTitle">mehrab.24csedu.001@gmail.com</p>
+                                        <p id="chatLastMessage">Image</p>
+                                    </div>
+                                </div>
+                                <div id="status" class="col">
+                                    <div id="statusInside">
+                                        <p id="chatLastModified">08:08 14-04-2020</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li id="chatItem" class="row"><img id="picture" src="img/groot_g.png" class="col">
+                                <div id="details" class="col">
+                                    <div id="detailsInside">
+                                        <p id="chatTitle">mehrab.24csedu.001@gmail.com</p>
+                                        <p id="chatLastMessage">Image</p>
+                                    </div>
+                                </div>
+                                <div id="status" class="col">
+                                    <div id="statusInside">
+                                        <p id="chatLastModified">08:08 14-04-2020</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- To Display Conversations -->
+                <div id="conversations" class="hide">
+                    <div class="row titleBar">
+                        <div id="navDiv" class="col">
+                            <a id="backBtn" href="" class=""><i id="" class="material-icons">arrow_back</i></a>
+                            <p id="navTitle">
+                                <a href="" id="navBtn" class="white-text disable">
+                                    <span id="conversationTitle" class="navText">Conversation</span>
+                                    <!-- {{!-- <img id="navImg" src="assets/img/dp.png" alt="pp" class="circle responsive-img right">                         --}} -->
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row main">
+                        <div id="conversationDiv" class="col">
+
+                            <div id="messagesDiv">
+                                <div class="message">
+                                    <span class="sender">
+                                        Mr. Sender (You)
+                                    </span>
+                                    <br>
+                                    <p class="senderMessageBody">Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                        time no see!Hello, there! Long
+                                    </p>
+                                </div>
+
+                                <div class="message">
+                                    <span class="receiver">
+                                        Mr. Receiver (Your Friend)
+                                    </span>
+                                    <br>
+                                    <p class="receiverMessageBody">
+                                        How are you?How are you?How are you?How are you?How are you?How are you?How are
+                                        you?How are you?How are you?How are you?How are you?How are you?How are you?How
+                                        are you?How are you?How are you?How are you?How are you?How are you?How are
+                                        you?How are you?How are you?How are you?How are you?How are you?How are you?How
+                                        are you?How are you?How are you?How are you?How are you?How are you?How are
+                                        you?How are you?How are you?How are you?How are you?How are you?How are you?How
+                                        are you?How are you?How are you?How are you?How are you?How are you?How are
+                                        you?How are you?How are you?How are you?How are you?How are you?How are you?How
+                                        are you?How are you?How are you?How are you?How are you?How are you?How are
+                                        you?How are you?How are you?
+                                    </p>
+                                </div>
+
+                                <div class="imageMessage">
+                                    <span class="sender">Mr. Sender (You)</span>
+                                    <br>
+                                    <span class="imageBody">
+                                        <img src="img/image.jpg" class="senderImgBody">
+                                    </span>
+                                </div>
+
+                                <div class="imageMessage">
+                                    <span class="receiver">
+                                        Mr. Receiver (Your Friend)
+                                    </span>
+                                    <br>
+                                    <span class="imageBody">
+                                        <img src="img/image.jpg" class="receiverImgBody">
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="sendDiv" class="row">
+                                <input placeholder="Send Message..." id="sendMessage" type="text" class="col">
+
+                                <div id="fileBtn" class="file-field input-field btn col hoverable">
+                                    <i id="imageIcon" class="material-icons">insert_photo</i>
+                                    <input type="file" name="" value="" id="fileInput">
+                                </div>
+
+                                <a href="" id="sendBtn" class="btn col">
+                                    <i id="sendIcon" class="material-icons">send</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- To Display Friends -->
+                <div id="friends" class="hide">
+                    <div class="row titleBar">
+                        <div id="navDiv" class="col">
+                            <a id="menuBtn" href="#menu" class="hamburger"><i id="" class="material-icons">menu</i></a>
+                            <p id="navTitle">
+                                <a href="" id="navBtn" class="white-text disable">
+                                    <span class="navText">Friends</span>
+                                    <!-- {{!-- <img id="navImg" src="assets/img/dp.png" alt="pp" class="circle responsive-img right">                         --}} -->
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row main">
+                        <ul id="friendsDiv" class="col">
+                            <li id="friend" class="row">
+                                <img id="picture" src="img/groot_g.png" alt="" class="col">
+                                <div id="details" class="col">
+                                    <div
+                                        style="position: relative; top:50%; left: 50%; transform: translate(-50%, -50%);">
+                                        <p id="friendTitle">I'm Groot</p>
+                                        <p id="friendLastActive">Last Active Yesterday</p>
+                                    </div>
+                                </div>
+                                <div id="status" class="col">
+                                    <div
+                                        style="position: relative; top:50%; left: 50%; transform: translate(-50%, -50%);">
+                                        <a id="friendChatWith" href=""><i
+                                                class="material-icons messageFriend">message</i></a>
+                                        <a id="friendViewProfile" href=""><i
+                                                class="material-icons viewFriendProfile">info</i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- To Display People -->
+                <div id="people" class="">
+                    <div class="row titleBar">
+                        <div id="navDiv" class="col">
+                            <a id="menuBtn" href="#menu" class="hamburger"><i id="" class="material-icons">menu</i></a>
+                            <p id="navTitle">
+                                <a href="" id="navBtn" class="white-text disable">
+                                    <span class="navText">People</span>
+                                    <!-- {{!-- <img id="navImg" src="assets/img/dp.png" alt="pp" class="circle responsive-img right">                         --}} -->
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row main">
+                        <ul id="peopleDiv" class="col">
+
+                            <li id="searchPeopleDiv" class="row">
+                                <a href="" id="searchPeopleBtn" class="brn col">
+                                    <i id="searchPeopleIcon" class="material-icons">search</i>
+                                </a>
+
+                                <input id="searchPeopleInput" placeholder="Search People By Email" type="text" class="col" onkeypress="searchPeople(event)" >
+                            </li>
+
+                            <div id="requestsLabelDiv">
+                                <p id="requestsLabel">Requests</p>
+                            </div>
+
+                            <div id="noRequestsDiv">
+                                <p id="noRequests">No Requests Found</p>
+                            </div>
+
+                            <li id="peopleItem" class="row">
+                                <img id="picture" src="img/groot_g.png" alt="" class="col">
+                                <div id="details" class="col">
+                                    <div
+                                        style="position: relative; top:50%; left: 50%; transform: translate(-50%, -50%);">
+                                        <p id="peopleTitle">I'm Groot</p>
+                                        <p id="peopleBio">I'm Groot</p>
+                                    </div>
+                                </div>
+                                <div id="status" class="col">
+                                    <div
+                                        style="position: relative; top:50%; left: 50%; transform: translate(-50%, -50%);">
+                                        <a id="peopleAddFriend" href=""><i
+                                                class="material-icons addFriend">person_add</i></a>
+                                        <a id="peopleViewProfile" href=""><i
+                                                class="material-icons viewPeopleProfile">info</i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- To Display Groups -->
+                <div id="groups" class="hide">
+                    <div class="row titleBar">
+                        <div id="navDiv" class="col">
+                            <a id="menuBtn" href="#menu" class="hamburger"><i id="" class="material-icons">menu</i></a>
+                            <p id="navTitle">
+                                <a href="" id="navBtn" class="white-text disable">
+                                    <span class="navText">Groups</span>
+                                    <!-- {{!-- <img id="navImg" src="assets/img/dp.png" alt="pp" class="circle responsive-img right">                         --}} -->
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row main">
+                        <div id="conversationDiv" class="col">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
